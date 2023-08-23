@@ -1,0 +1,45 @@
+<mat-card class="margin-24">
+  <mat-card-header>
+    <mat-card-title>Editar SubCoordinacion</mat-card-title>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <form novalidate [formGroup]='form' *ngIf='form'>
+    <mat-card-content class="margin-bottom-24">
+      <mat-form-field>
+        <mat-label>Coordinaciones</mat-label>
+        <mat-select formControlName='coordinacion_id'>
+          <mat-option *ngFor='let coordinacion of coordinaciones' [value]='coordinacion.id' >
+            {{ coordinacion.nombre }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf='form.controls["coordinacion_id"].hasError("required")'>Un elemento de la lista debe ser seleccionado</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input type="text" matInput formControlName='ciudad'>
+        <mat-label>Ciudad</mat-label>
+        <mat-error *ngIf='form.controls["ciudad"].hasError("required")'>Este campo no debe estar vacio</mat-error>
+        <mat-error *ngIf='form.controls["ciudad"].hasError("minlength")'>Este campo tiene la longitud minima permitida</mat-error>
+        <mat-error *ngIf='form.controls["ciudad"].hasError("maxlength")'>Este campo no tiene la longitud maxima permitida </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input type="text" matInput formControlName='nombre'>
+        <mat-label>Nombre</mat-label>
+        <mat-error *ngIf='form.controls["nombre"].hasError("required")'>Este campo no debe estar vacio</mat-error>
+        <mat-error *ngIf='form.controls["nombre"].hasError("minlength")'>Este campo tiene la longitud minima permitida</mat-error>
+        <mat-error *ngIf='form.controls["nombre"].hasError("maxlength")'>Este campo no tiene la longitud maxima permitida </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input type="text" matInput formControlName='direccion' >
+        <mat-label>Direccion</mat-label>
+        <mat-error *ngIf='form.controls["direccion"].hasError("required")'>Este campo no debe estar vacio</mat-error>
+        <mat-error *ngIf='form.controls["direccion"].hasError("minlength")'>Este campo tiene la longitud minima permitida</mat-error>
+        <mat-error *ngIf='form.controls["direccion"].hasError("maxlength")'>Este campo no tiene la longitud maxima permitida </mat-error>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button mat-raised-button color='primary' (click)='edit()' [disabled]='!form.valid' > Guardar</button>
+    </mat-card-actions>
+  </form>
+</mat-card>

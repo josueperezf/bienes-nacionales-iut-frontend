@@ -1,0 +1,53 @@
+<mat-card class="margin-24">
+  <mat-card-header>
+    <mat-card-title>Editar Unidad Administrativa</mat-card-title>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+
+  <form novalidate [formGroup]='form' *ngIf='subcoordinacionSeleccionada'>
+    <mat-card-content class="margin-bottom-24">
+
+      <mat-form-field>
+        <mat-label>Coordinaciones</mat-label>
+        <mat-select formControlName='coordinacion_id'>
+          <mat-option *ngFor='let coordinacion of coordinacions' [value]='coordinacion.id' >
+          {{coordinacion.nombre }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.controls['coordinacion_id'].hasError('required')"> Un elemento de la lista debe ser seleccionado</mat-error>
+      </mat-form-field>
+
+      <div *ngIf='subcoordinaciones'>
+        <mat-form-field>
+          <mat-label>Subcoordinaciones</mat-label>
+          <mat-select formControlName='subcoordinacion_id'>
+            <mat-option *ngFor='let subcoordinacion of subcoordinaciones' [value]='subcoordinacion.id'>
+              {{subcoordinacion.nombre }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="form.controls['subcoordinacion_id'].hasError('required')"> Un elemento de la lista debe ser seleccionado</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input type="text" matInput formControlName='nombre' >
+          <mat-label>Nombre</mat-label>
+          <mat-error *ngIf="form.controls['nombre'].hasError('required')"> Este elemento no debe estar vacio</mat-error>
+          <mat-error *ngIf="form.controls['nombre'].hasError('minlength')"> Este elemento no cumple con la longitud minima </mat-error>
+          <mat-error *ngIf="form.controls['nombre'].hasError('maxlength')"> Este elemento supera la longitud maxima permitida</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input type="text" matInput formControlName='telefono' maxlength="12">
+          <mat-label>Telefono</mat-label>
+          <mat-error *ngIf="form.controls['telefono'].hasError('required')"> Este elemento no debe estar vacio</mat-error>
+          <mat-error *ngIf="form.controls['telefono'].hasError('minlength')"> Este elemento no cumple con la longitud minima </mat-error>
+          <mat-error *ngIf="form.controls['telefono'].hasError('maxlength')"> Este elemento supera la longitud maxima permitida</mat-error>
+        </mat-form-field>
+
+      </div>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button mat-raised-button color='primary' (click)='edit()' [disabled]='!form.valid' > Guardar</button>
+    </mat-card-actions>
+  </form>
+</mat-card>

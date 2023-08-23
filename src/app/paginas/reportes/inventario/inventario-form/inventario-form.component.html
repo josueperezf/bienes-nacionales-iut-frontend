@@ -1,0 +1,92 @@
+<mat-card class="margin-24">
+
+    <mat-card-title align='center'>Reporte Inventario</mat-card-title>
+
+  <mat-divider></mat-divider>
+
+  <form novalidate [formGroup]='form'>
+    <mat-card-content class="margin-bottom-24 margin-top-16 min-width-600">
+
+      <mat-grid-list cols="3" rowHeight="80px" [gutterSize]="'16px'">
+
+        <mat-grid-tile>
+          <mat-form-field *ngIf='coordinacions' class="full-width">
+            <mat-label>Coordinacion</mat-label>
+            <mat-select formControlName='coordinacion_id'  autofocus='autofocus'>
+              <mat-option *ngFor='let coordinacion of coordinacions' [value]='coordinacion.id' >
+                {{coordinacion.nombre}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <mat-form-field *ngIf='subcoordinacions' class="full-width">
+            <mat-label>Subcoordinacion</mat-label>
+            <mat-select formControlName='subcoordinacion_id' >
+              <mat-option *ngFor='let subcoordinacion of subcoordinacions' [value]='subcoordinacion.id' >
+                {{subcoordinacion.nombre}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <mat-form-field *ngIf="(unidadAdministrativas && form.controls['subcoordinacion_id'].value)" class="full-width">
+            <mat-label>Unidad Administrativa Destino</mat-label>
+            <mat-select formControlName='unidad_administrativa_id'  >
+              <mat-option *ngFor='let unidadAdministrativa of unidadAdministrativas' [value]='unidadAdministrativa.id' >
+                {{unidadAdministrativa.nombre}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-grid-tile>
+
+      </mat-grid-list>
+
+
+      <mat-grid-list cols="3" rowHeight="80px" [gutterSize]="'16px'">
+
+        <mat-grid-tile>
+          <mat-form-field *ngIf='dependenciaUsuarias' class="full-width">
+            <mat-label>Dependencia Usaria</mat-label>
+            <mat-select formControlName='dependencia_usuaria_id' >
+              <mat-option *ngFor='let dependenciaUsuaria of dependenciaUsuarias' [value]='dependenciaUsuaria.id' >
+                {{dependenciaUsuaria.nombre}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.controls['dependencia_usuaria_id'].errors">Un Elemento de la lista debe ser seleccionado</mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <mat-form-field class="full-width">
+            <mat-error *ngIf="form.controls['fecha'].errors">Debe seleccionar una fecha</mat-error>
+            <input matInput  [min]='minDate' [max]='maxDate'   [matDatepicker]='picker' readonly formControlName='fecha' placeholder='Fecha a consultar'>
+            <mat-datepicker-toggle matSuffix [for]='picker'></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <div class="full-width">
+            <button mat-raised-button color='primary' (click)='generar()' [disabled]='!form.valid' > Consultar</button>
+          </div>
+        </mat-grid-tile>
+
+      </mat-grid-list>
+
+
+
+
+
+    </mat-card-content>
+
+
+
+  </form>
+</mat-card>
+<!--
+<div *ngIf='dataEnviar'>
+  <app-inventario-show [form]="dataEnviar"></app-inventario-show>
+</div>-->

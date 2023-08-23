@@ -1,0 +1,75 @@
+<mat-card class="margin-24">
+  <mat-card-header>
+    <mat-card-title>Ver Dependencia Usuaria</mat-card-title>
+  </mat-card-header>
+  <mat-divider/>
+
+  <mat-card-content>
+    <mat-list *ngIf='dependenciaUsuarias'>
+      <mat-list-item>
+        <b>Unidad Administrativa:</b>
+        {{dependenciaUsuarias.unidad_administrativa.nombre}}
+        <button mat-icon-button color='primary' (click)="showUnidadAdministrativa(dependenciaUsuarias.unidad_administrativa.id)" >
+          <mat-icon>remove_red_eye</mat-icon>
+        </button>
+
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <b>Nombre:</b>
+        {{dependenciaUsuarias.nombre}}
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <b>Creado:</b>
+        {{dependenciaUsuarias.created_at | date: 'dd/MM/yyyy'}}
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <b>Estatus:</b>
+        <div *ngIf='dependenciaUsuarias?.deleted_at'>INACTIVO</div>
+        <div *ngIf='!dependenciaUsuarias?.deleted_at'>ACTIVO</div>
+      </mat-list-item>
+    </mat-list>
+
+    <div *ngIf='biens && biens.length > 0'>
+      <hr>
+      <h3 align='center'> Bienes Relacionados</h3>
+      <table mat-table class="full-width-table"  [dataSource]="biens" matSort aria-label="Elements">
+
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+          <td mat-cell *matCellDef="let row">{{row.id}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="codigo">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Codigo</th>
+          <td mat-cell *matCellDef="let row">{{row.codigo}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="serial">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Serial</th>
+          <td mat-cell *matCellDef="let row">{{row.serial}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="monto">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Monto</th>
+          <td mat-cell *matCellDef="let row">{{row.monto}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="denominacion_nombre">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Denominacion</th>
+          <td mat-cell *matCellDef="let row">{{row.denominacion_nombre}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="marca_nombre">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Marca</th>
+            <td mat-cell *matCellDef="let row">{{row.marca_nombre}}</td>
+          </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  </mat-card-content>
+</mat-card>

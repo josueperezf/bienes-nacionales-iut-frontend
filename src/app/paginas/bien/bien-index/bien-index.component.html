@@ -1,0 +1,99 @@
+<!-- 'id', 'codigo','serial','marca_nombre','denominacion_nombre','acciones'  -->
+<div class="index-container mat-elevation-z8">
+  <mat-card>
+    <mat-card-title class="text-center">Bienes</mat-card-title>
+
+    <mat-card-content>
+      <button mat-raised-button color='primary' (click)='add()' >Agregar</button>
+      <br>
+
+      <mat-form-field>
+        <mat-label>Buscar...</mat-label>
+        <input type="text" matInput [(ngModel)]='buscar' (keyup)="applyFilter()" placeholder="Ej. Samsung" #input autofocus>
+      </mat-form-field>
+
+      <div class="sombra-loading" *ngIf="isLoadingResults || isRateLimitReached">
+        <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+        <div class="limite-maximo-de-taza-alcanzado" *ngIf="isRateLimitReached">
+          Se alcanzó el límite de velocidad de la API. Se restablecerá en un minuto.
+        </div>
+      </div>
+
+
+
+      <div class="table-container-responsive">
+
+        <table mat-table [dataSource]="bienes" class="full-width-table"
+           matSort matSortActive="id" matSortDisableClear matSortDirection="desc">
+          <!-- Id Column -->
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>Id</th>
+            <td mat-cell *matCellDef="let row">{{row.id}}</td>
+          </ng-container>
+
+          <!-- codigo Column -->
+          <ng-container matColumnDef="codigo">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Codigo</th>
+            <td mat-cell *matCellDef="let row">{{row.codigo}}</td>
+          </ng-container>
+
+          <!-- serial Column -->
+          <ng-container matColumnDef="serial">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Serial</th>
+            <td mat-cell *matCellDef="let row">{{row.serial}}</td>
+          </ng-container>
+
+          <!-- marca_nombre Column -->
+          <ng-container matColumnDef="marca_nombre">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Marca</th>
+            <td mat-cell *matCellDef="let row">
+              <button mat-button color='primary' (click)="showMarca(row)">
+                {{row.marca_nombre}}
+              </button>
+            </td>
+          </ng-container>
+
+          <!-- denominacion_nombre Column -->
+          <ng-container matColumnDef="denominacion_nombre">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Denominacion</th>
+            <td mat-cell *matCellDef="let row">{{row.denominacion_nombre}}</td>
+          </ng-container>
+          <!-- dependencia_usuaria_nombre Column -->
+          <ng-container matColumnDef="dependencia_usuaria_nombre">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Dep. Usuaria</th>
+            <td mat-cell *matCellDef="let row">
+              <button mat-button color='primary' (click)="showDependenciaUsuaria(row)">
+                {{row.dependencia_usuaria_nombre}}
+              </button>
+            </td>
+          </ng-container>
+
+          <!-- acciones Column -->
+          <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef >Acciones</th>
+            <td mat-cell *matCellDef="let row">
+              <button mat-icon-button color="primary" aria-label="Ver" (click)="show(row)" >
+                <mat-icon>remove_red_eye</mat-icon>
+              </button>
+
+              <button mat-icon-button color="primary" aria-label="editar" (click)="edit(row)" >
+                <mat-icon> border_color</mat-icon>
+              </button>
+
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+
+      <mat-paginator #paginator
+        [length]="resultsLength"
+        [pageIndex]="0"
+        [pageSize]="10"
+        [pageSizeOptions]="[10, 25, 20, 50, 100]">
+      </mat-paginator>
+    </mat-card-content>
+  </mat-card>
+</div>

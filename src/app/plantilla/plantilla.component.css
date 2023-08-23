@@ -1,0 +1,250 @@
+/* */
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+
+}
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+
+/*Autor Josue Perez IUT*/
+/* cambiando el color de navbar o menu principal*/
+* { margin: 0px;
+  padding: 0px; outline: 0;
+  }
+  .mat-primary {
+    background:#357DAE;
+    background:-webkit-gradient(linear, 10% 56%, 10% 21%, from(#3F86BA), to(#327AAA));
+    background:-moz-linear-gradient(53% 55% 92deg, #3F86BA, #327AAA 36%);
+    background:-o-linear-gradient(53% 55% 92deg, #3F86BA, #327AAA 36%);
+    background:-ms-linear-gradient(53% 55% 92deg, #3F86BA, #327AAA 36%);
+  }
+  #menu
+  {
+      font-family:Roboto, "Helvetica Neue", sans-serif;
+      font-size: 14px;
+      padding-top:0px;
+      width: 174px;
+      margin: 10px;
+      position: relative;
+  }
+  #menu li:first-child a{
+      -webkit-border-radius: 15px 15px 0px 0px;
+      -moz-border-radius: 15px 15px 0px 0px;
+      -o-border-radius: 15px 15px 0px 0px;
+      -ms-border-radius: 15px 15px 0px 0px;
+      border-radius: 15px 15px 0px 0px;
+  }
+  #menu li:last-child a{
+      -webkit-border-radius: 0px 0px 15px 15px;
+      -o-border-radius: 0px 0px 15px 15px;
+      -ms-border-radius: 0px 0px 15px 15px;
+      -moz-border-radius: 0px 0px 15px 15px;
+      border-radius: 0px 0px 15px 15px;
+  }
+  #menu:hover li a{
+      /*text-shadow: 0px 0px 1px #fff;*/
+      /*color: transparent;*/
+      /* se cambia el color del menu de una forma agradable, pero en opera no se ve el menu*/
+  }
+
+  #menu ul { list-style-type: none;
+  }
+  #menu ul li.nivel1 {
+  width: 175px;
+  }
+  #menu ul li.primera { border-top: solid 2px #FFF;
+  border-radius:10px;
+
+  }
+  #menu ul li a
+  {
+      text-decoration: none;
+      /*white-space: nowrap;*/
+      box-shadow:5px 5px 10px hsla(0,0%,0%,.9);
+      display: block;
+      /*text-shadow: 1px 1px 10px rgba(71,80,23,0.6);*/
+      color: #FFF;/*color de la letra del Menu*/
+      padding: 5px 20px;
+      margin: 2px;
+      background:#357DAE;
+      background:-webkit-gradient(linear, 10% 56%, 10% 21%, from(#3F86BA), to(#327AAA));
+      background:-moz-linear-gradient(53% 55% 92deg, #3F86BA, #327AAA 36%);
+      background:-o-linear-gradient(53% 55% 92deg, #3F86BA, #327AAA 36%);
+      background:-ms-linear-gradient(53% 55% 92deg, #3F86BA, #327AAA 36%);
+      letter-spacing: 1px;
+      height:35px;
+      -webkit-transition: all .2s ease-in-out;
+      -moz-transition: color .2s ease-in-out;
+      -o-transition: color .2s ease-in-out;
+      -ms-transition: color .2s ease-in-out;
+      transition: all .2s ease-in-out;
+      /*-webkit-transform*/
+  }
+
+  #menu ul li:hover
+  {
+      position: relative;
+      background: transparent;
+      /*text-shadow: 1px 1px 10px rgba(71,80,23,0.6);*/
+      color: #c4d85a;
+      -webkit-box-shadow:2px 2px 1px #CCC;
+      -moz-box-shadow:2px 2px 15px #CCC;
+      -o-box-shadow:2px 2px 15px #CCC;
+      -ms-box-shadow:2px 2px 15px #CCC;
+  }
+
+  #menu ul li a:hover, #menu ul li:hover a.nivel1
+  {
+      /*background: #3F86BA;*/
+      text-shadow: 1px 1px 10px rgba(71,80,23,0.6);
+      color: #c4d85a;
+      border-radius:5px;
+      -moz-transform: scale(1.15);
+      -ms-transform: scale(1.15);
+      -o-transform: scale(1.15);
+      -webkit-transform: scale(1.15);
+      transform: scale(1.15);
+
+  }
+  #menu ul li a.nivel1
+  {
+      display: block!important;display: none;
+      position: relative;
+  }
+
+  #menu ul li ul {display: none;
+  }
+  #menu ul li a:hover ul, #menu ul li:hover ul
+  {
+      display: block;
+      position: absolute;
+      left: 104px;top:-1px!important;top: -31px;
+      z-index: 9999999999 !important;
+      /*text-shadow: 1px 1px 10px rgba(71,80,23,0.6);	*/
+      /*-webkit-animation-name:girar;
+      -webkit-animation-duration:.3s;
+      -webkit-animation-iteration-count:1;
+      -moz-animation-name:girar;
+      -moz-animation-duration:.3s;
+      -moz-animation-iteration-count:1;
+      animation-name:girar;
+      animation-duration:.3s;
+      animation-iteration-count:1;
+      */
+  }
+
+  #menu ul li ul li a
+  {
+      position: relative;
+      /*background: transparent;*/
+      background:-webkit-gradient(linear, 10% 56%, 10% 21%, from(#3F86BA), to(#327AAA));
+      background:-moz-linear-gradient(53% 55% 92deg, #3F86BA, #327AAA 36%);
+      text-shadow: 1px 1px 10px rgba(71,80,23,0.6);
+      -webkit-box-shadow:2px 2px 25px #CCC;
+      -moz-box-shadow:2px 2px 53px #CCC;
+      -o-box-shadow:2px 2px 53px #CCC;
+      -ms-box-shadow:2px 2px 53px #CCC;
+      box-shadow:5px 5px 10px hsla(0,0%,0%,.9);
+
+      border-radius:10px;
+  }
+  #menu ul li ul li a:hover {position: relative;
+  /*background-color: #FFF;*/
+  background-color:(255,255,255,0.2);
+  }
+  table.falsa
+  {
+      border-collapse:collapse;
+      border:0px;
+      float: left;
+      position: relative;
+  }
+      @-moz-keyframes girar
+      {
+          /*0%
+          {
+              -moz-transform:rotate(90grad);
+          }
+          33%
+          {
+              -moz-transform:rotate(180grad);
+          }
+          66%
+          {
+              -moz-transform:rotate(270grad);
+          }
+          100%
+          {
+              -moz-transform:rotate(360grad);
+          }*/
+          0%
+          {
+              opacity:.1;
+              padding-left:200px;
+              -moz-transform: skew(-25deg, 1deg);
+              box-shadow:none;
+          }
+          50%
+          {
+              opacity:.5;
+              padding-left:100px;
+          }
+          100%
+          {
+              opacity:1;
+              padding-left:0px;
+          }
+      }
+
+
+
+
+
+/* inicio Josue */
+/*
+.sidenav .mat-nav-list {
+  background-color:rgb(98, 63, 182);
+  border-radius: 3px;
+}
+*/
+/*
+.mat-list-base .mat-list-item{
+  color: #fff;
+}
+.mat-list-base .mat-list-item:hover{
+
+  position: relative;
+
+	color: #c4d85a;
+	-webkit-box-shadow:2px 2px 1px #CCC;
+	-moz-box-shadow:2px 2px 15px #CCC;
+	-o-box-shadow:2px 2px 15px #CCC;
+  -ms-box-shadow:2px 2px 15px #CCC;
+  background:hsla(0,0%,80%,.5);
+}
+
+.mat-drawer{
+  background-color:rgb(98, 63, 182);
+
+}
+
+/* fin josue*/
+
+
+
+.mat-sidenav{
+
+    width: 250px;
+
+}
+.mat-sidenav-content{
+    background-color: white;
+}

@@ -1,0 +1,50 @@
+<mat-sidenav-container fullscreen class="sidenav-container">
+  <mat-sidenav   #drawer class="sidenav" fixedInViewport="true"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="!(isHandset$ | async)"  >
+    <mat-toolbar class='center' style=" margin-top: 25px; margin-bottom: 10px; background-color: white;">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <img src="../../../assets/imagenes/sarec.png" alt="" width="80px"  align='center' >
+    </mat-toolbar><br><br>
+    <div id="menu">
+      <ul>
+        <li><a routerLink='subcoordinacions'>SubCoordinaciones</a></li>
+        <li><a routerLink='unidadAdministrativas'>Unidad Administrativa</a></li>
+        <li><a routerLink='dependenciaUsuarias'>Dependencia Usuaria</a></li>
+        <li><a routerLink='marcas'>Marcas</a> </li>
+        <li><a routerLink='bienes'>Bienes</a></li>
+        <li><a routerLink='movimientos'>Movimientos</a></li>
+        <li><a href="#" >Reportes</a>
+          <ul>
+              <li><a routerLink='reportes/inventario' >Inventario</a></li>
+            <li><a href="/ubv/ubvmov13s/index">Movimientos</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <img src="../../../assets/imagenes/banner.png" width="100%">
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>Bienes Nacionales </span>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <router-outlet></router-outlet>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

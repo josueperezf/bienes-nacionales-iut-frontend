@@ -1,0 +1,169 @@
+<mat-card class="margin-24">
+  <mat-card-header>
+    <mat-card-title>Nuevo Bien</mat-card-title>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+
+  <form novalidate [formGroup]='form' *ngIf='form'>
+
+    <mat-card-content class="margin-bottom-24">
+
+      <div *ngIf='!mas'>
+
+        <mat-grid-list cols="3" rowHeight="80px" [gutterSize]="'16px'">
+
+          <mat-grid-tile>
+            <mat-form-field class="full-width">
+              <mat-label>Coordinacion</mat-label>
+              <mat-select formControlName='coordinacion_id'>
+                <mat-option *ngFor='let coordinacion of coordinacions' [value]='coordinacion.id'>
+                  {{coordinacion.nombre}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="form.controls['coordinacion_id'].hasError('required')"> Un elemento de la lista debe ser seleccionado</mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile [colspan]="2">
+            <mat-form-field *ngIf='subcoordinaciones' class="full-width">
+              <mat-label>Subcoordinacion</mat-label>
+              <mat-select formControlName='subcoordinacion_id'>
+                <mat-option *ngFor='let subcoordinacion of subcoordinaciones' [value]='subcoordinacion.id'>
+                  {{subcoordinacion.nombre}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="form.controls['subcoordinacion_id'].hasError('required')"> Un elemento de la lista debe ser seleccionado</mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+
+        </mat-grid-list>
+
+        <mat-grid-list cols="3" rowHeight="80px" [gutterSize]="'16px'">
+
+          <mat-grid-tile>
+            <mat-form-field *ngIf='dependeciaUsuarias' class="full-width">
+              <mat-label>Dependencia Usuaria tipo Almacen</mat-label>
+              <mat-select formControlName='dependencia_usuaria_id'>
+                <mat-option *ngFor='let dependecia_usuaria of dependeciaUsuarias' [value]='dependecia_usuaria.dependencia_usuaria_id'>
+                   {{dependecia_usuaria.unidad_administrativa_nombre}} -- {{dependecia_usuaria.nombre}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="form.controls['dependencia_usuaria_id'].hasError('required')"> Un elemento de la lista debe ser seleccionado</mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile [colspan]="2">
+            <mat-form-field *ngIf='detalleTipoMovimientos' class="full-width">
+              <mat-label>Razon de incorporacion</mat-label>
+              <mat-select  formControlName='detalle_tipo_movimiento_id'>
+                <mat-option *ngFor='let detalle_tipo_movimiento of detalleTipoMovimientos' [value]='detalle_tipo_movimiento.id'>
+                  {{detalle_tipo_movimiento.nombre}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="form.controls['detalle_tipo_movimiento_id'].hasError('required')"> Un elemento de la lista debe ser seleccionado</mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+
+        </mat-grid-list>
+      </div>
+
+
+      <div *ngIf='dependeciaUsuarias'>
+
+        <mat-grid-list cols="3" rowHeight="80px" [gutterSize]="'16px'">
+
+          <mat-grid-tile>
+            <mat-form-field *ngIf='categorias' class="full-width">
+              <mat-label>Categoria</mat-label>
+              <mat-select formControlName='categoria_id'>
+                <mat-option *ngFor='let categoria of categorias' [value]='categoria.id'>
+                  {{categoria.nombre}}
+               </mat-option>
+              </mat-select>
+              <mat-error *ngIf="form.controls['categoria_id'].hasError('required')"> Un elemento de la lista debe ser seleccionado</mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile>
+            <mat-form-field *ngIf='denominacions' class="full-width">
+              <mat-label>Denominaciones</mat-label>
+              <mat-select formControlName='denominacion_id'>
+                <mat-option *ngFor='let denominacion of denominacions' [value]='denominacion.id'>
+                  {{denominacion.nombre}}
+               </mat-option>
+              </mat-select>
+              <mat-error *ngIf="form.controls['denominacion_id'].hasError('required')"> Un elemento de la lista debe ser seleccionado</mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile>
+            <mat-form-field *ngIf='marcas' class="full-width">
+              <mat-label>Marcas</mat-label>
+              <mat-select formControlName='marca_id'>
+                <mat-option *ngFor='let marca of marcas' [value]='marca.id'>
+                  {{marca.nombre}}
+               </mat-option>
+              </mat-select>
+              <mat-error *ngIf="form.controls['marca_id'].hasError('required')"> Un elemento de la lista debe ser seleccionado</mat-error>
+            </mat-form-field>
+
+            <button mat-icon-button color="primary" aria-label="editar" (click)="addMarca()" >
+              <mat-icon>add_circle_outline</mat-icon>
+            </button>
+          </mat-grid-tile>
+
+        </mat-grid-list>
+
+        <mat-grid-list cols="3" rowHeight="80px" [gutterSize]="'16px'">
+
+          <mat-grid-tile>
+            <mat-form-field>
+              <input type="text" matInput formControlName='codigo' maxlength="20">
+              <mat-label>Codigo</mat-label>
+              <mat-error *ngIf="form.controls['codigo'].hasError('required')"> Este elemento no debe estar vacio</mat-error>
+              <mat-error *ngIf="form.controls['codigo'].hasError('minlength')">No cumple con la longitud minima permitida </mat-error>
+              <mat-error *ngIf="form.controls['codigo'].hasError('maxlength')">No cumple con la longitud maxima permitida </mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile>
+            <mat-form-field>
+              <input type="text" matInput formControlName='serial' maxlength="20">
+              <mat-label>Serial</mat-label>
+              <mat-error *ngIf="form.controls['serial'].hasError('required')"> Este elemento no debe estar vacio</mat-error>
+              <mat-error *ngIf="form.controls['serial'].hasError('minlength')">No cumple con la longitud minima permitida </mat-error>
+              <mat-error *ngIf="form.controls['serial'].hasError('maxlength')">No cumple con la longitud maxima permitida </mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile>
+            <mat-form-field>
+              <input type="text" matInput formControlName='monto' type="number" maxlength="20">
+              <mat-label>Monto</mat-label>
+              <mat-error *ngIf="form.controls['monto'].hasError('required')"> Este elemento no debe estar vacio</mat-error>
+              <mat-error *ngIf="form.controls['monto'].hasError('minlength')">No cumple con la longitud minima permitida </mat-error>
+              <mat-error *ngIf="form.controls['monto'].hasError('maxlength')">No cumple con la longitud maxima permitida </mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+        </mat-grid-list>
+
+
+        <mat-form-field class="full-width">
+          <input type="text" matInput formControlName='descripcion' maxlength="100">
+          <mat-label>Descripcion Opcional</mat-label>
+          <mat-error *ngIf="form.controls['descripcion'].hasError('required')"> Este elemento no debe estar vacio</mat-error>
+          <mat-error *ngIf="form.controls['descripcion'].hasError('minlength')">No cumple con la longitud minima permitida </mat-error>
+          <mat-error *ngIf="form.controls['descripcion'].hasError('maxlength')">No cumple con la longitud maxima permitida </mat-error>
+        </mat-form-field>
+
+      </div>
+
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+      <button mat-raised-button color='primary' (click)="add('listar')" [disabled]='!form.valid' > Guardar y Listar</button>
+      <button mat-raised-button color='primary' (click)="add('mas')" [disabled]='!form.valid' class="margin-left-16"> Guardar y Agregar uno Nuevo</button>
+      <button mat-raised-button color='primary' (click)="add('pdf')" [disabled]='!form.valid' class="margin-left-16"> Guardar, Finalizar e Imprimir</button>
+    </mat-card-actions>
+  </form>
+</mat-card>

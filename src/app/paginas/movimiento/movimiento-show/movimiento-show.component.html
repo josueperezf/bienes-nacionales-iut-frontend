@@ -1,0 +1,66 @@
+<mat-card class="margin-24">
+  <mat-card-header>
+    <img src="../../../../assets/imagenes/banner.png" width="100%">
+  </mat-card-header>
+  <mat-divider/>
+
+  <mat-card-content *ngIf="movimiento" >
+    <mat-list >
+      <mat-list-item> <b> MOVIMIENTO #{{movimiento.id}}, FECHA: {{movimiento.fecha | date: 'dd/MM/yyyy'}} </b> </mat-list-item>
+      <mat-list-item><b> MOTIVO:</b> {{movimiento.detalle_tipo_movimiento.tipo_movimiento.nombre}} POR {{movimiento.detalle_tipo_movimiento.nombre.toLocaleUpperCase()}}</mat-list-item>
+      <mat-list-item><b> DESTINO: </b> SUBCOORDINACION - {{movimiento.biens_movimientos[0].dependencia_usuaria.unidad_administrativa.subcoordinacion.nombre}}, UNIDAD ADMINISTRATIVA - {{movimiento.biens_movimientos[0].dependencia_usuaria.unidad_administrativa.nombre}} </mat-list-item>
+    </mat-list>
+    <mat-divider/>
+
+
+    <table mat-table class="full-width-table header-primary" *ngIf='movimiento' [dataSource]="movimiento.biens_movimientos"  aria-label="Elements">
+      <!-- Id Column -->
+
+      <ng-container matColumnDef="codigo">
+        <th mat-header-cell *matHeaderCellDef ><b> Codigo </b></th>
+        <td mat-cell *matCellDef="let row">{{row.bien.codigo}}</td>
+      </ng-container>
+
+      <!-- tipo_movimiento_nombre Column -->
+      <ng-container matColumnDef="marca">
+        <th mat-header-cell *matHeaderCellDef >Marca</th>
+        <td mat-cell *matCellDef="let row">{{row.bien.marca.nombre}}</td>
+      </ng-container>
+
+      <!-- detalle_tipo_movimiento_nombre Column -->
+      <ng-container matColumnDef="denominacion">
+        <th mat-header-cell *matHeaderCellDef > Descripcion</th>
+        <td mat-cell *matCellDef="let row">{{row.bien.denominacion.nombre.toLocaleUpperCase()}}</td>
+      </ng-container>
+
+      <!-- fecha Column -->
+      <ng-container matColumnDef="monto">
+        <th mat-header-cell *matHeaderCellDef > Monto</th>
+        <td mat-cell *matCellDef="let row">{{row.bien.monto}}</td>
+      </ng-container>
+      <!-- acciones Column -->
+      <ng-container matColumnDef="origen">
+        <th mat-header-cell *matHeaderCellDef > <div align='center'> Origen </div>  </th>
+        <td mat-cell *matCellDef="let row">
+          <div *ngIf='row.dependencia_usuaria.dependencia_usuaria_origen_nombre'>
+            {{row.dependencia_usuaria.unidad_administrativa.subcoordinacion.subcoordinacion_origen_nombre}} /
+            {{row.dependencia_usuaria.unidad_administrativa.unidad_administrativa_origen_nombre}} /
+            {{row.dependencia_usuaria.dependencia_usuaria_origen_nombre}}
+          </div>
+          <div *ngIf='!row.dependencia_usuaria.dependencia_usuaria_origen_nombre'>
+            EXTERNO
+          </div>
+        </td>
+      </ng-container>
+      <!-- acciones Column -->
+      <ng-container matColumnDef="destino">
+          <th mat-header-cell *matHeaderCellDef >Dep. destino</th>
+          <td mat-cell *matCellDef="let row">
+            {{row.dependencia_usuaria.nombre}}
+          </td>
+        </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </mat-card-content>
+</mat-card>

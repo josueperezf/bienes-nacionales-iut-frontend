@@ -1,0 +1,17 @@
+<div class="margin-24">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title class="text-center">{{ data.titulo }}</mat-card-title>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-content class="margin-bottom-24 margin-top-24">
+      <p>
+        {{ data.contenido }}
+      </p>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button mat-raised-button color='warn'    (click)="cerrar(false)" class="margin-left-8">Cancelar</button>
+      <button mat-raised-button color='primary' (click)="cerrar(true)" class="margin-left-8">Borrar</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

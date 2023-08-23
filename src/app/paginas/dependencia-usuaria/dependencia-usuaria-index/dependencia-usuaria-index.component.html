@@ -1,0 +1,88 @@
+<div class="index-container mat-elevation-z8">
+  <mat-card>
+    <mat-card-title  class="text-center">Dependencias Usuarias</mat-card-title>
+    <mat-card-content>
+      <button mat-raised-button color='primary' (click)='add()' >Agregar</button>
+      <br>
+      <mat-form-field >
+        <mat-label>Buscar...</mat-label>
+        <input type="text" matInput [(ngModel)]='buscar' (keyup)="applyFilter()" placeholder="Ej. HP" #input autofocus>
+      </mat-form-field>
+
+      <div class="sombra-loading" *ngIf="isLoadingResults || isRateLimitReached">
+        <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+        <div class="limite-maximo-de-taza-alcanzado" *ngIf="isRateLimitReached">
+          Se alcanzó el límite de velocidad de la API. Se restablecerá en un minuto.
+        </div>
+      </div>
+
+      <div class="table-container-responsive">
+        <table mat-table [dataSource]="dependenciaUsuarias" class="example-table"
+            matSort matSortActive="id" matSortDisableClear matSortDirection="desc">
+          <!-- Id Column -->
+
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>Id</th>
+            <td mat-cell *matCellDef="let row">{{row.id}}</td>
+          </ng-container>
+
+          <!-- nombre Column -->
+          <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
+            <td mat-cell *matCellDef="let row">{{row.nombre}}</td>
+          </ng-container>
+
+          <!-- tipo_dependencia_usuaria_nombre Column -->
+          <ng-container matColumnDef="tipo_dependencia_usuaria_nombre">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Tipo</th>
+            <td mat-cell *matCellDef="let row">{{row.tipo_dependencia_usuaria_nombre}}</td>
+          </ng-container>
+
+          <!-- unidad_administrativa_nombre Column -->
+          <ng-container matColumnDef="unidad_administrativa_nombre">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Unidad Administrativa </th>
+            <td mat-cell *matCellDef="let row">{{row.unidad_administrativa_nombre}}</td>
+          </ng-container>
+          <!-- estatus Column -->
+          <ng-container matColumnDef="estatus">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Estatus</th>
+            <td mat-cell *matCellDef="let row">
+              {{row.estatus}} <br>
+              <button *ngIf="row.estatus=='INACTIVO'" mat-button color='primary' (click)='restaurar(row)' > Restarar</button>
+            </td>
+          </ng-container>
+
+          <!-- acciones Column -->
+          <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef >Acciones</th>
+            <td mat-cell *matCellDef="let dependenciaUsuaria">
+              <span *ngIf="!dependenciaUsuaria.deleted_at">
+                <button mat-icon-button color="primary" aria-label="Ver" (click)="show(dependenciaUsuaria)" >
+                  <mat-icon>remove_red_eye</mat-icon>
+                </button>
+                <button mat-icon-button color="primary" aria-label="editar" (click)="edit(dependenciaUsuaria)" >
+                  <mat-icon> border_color</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" aria-label="eliminar" (click)="confirmar(dependenciaUsuaria)" >
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </span>
+              <button mat-icon-button color="warn" aria-label="restaurar" (click)="restaurar(dependenciaUsuaria)" *ngIf="dependenciaUsuaria.deleted_at">
+                <mat-icon>settings_backup_restore</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+
+      <mat-paginator #paginator
+        [length]="resultsLength"
+        [pageIndex]="0"
+        [pageSize]="10"
+        [pageSizeOptions]="[10, 25, 20, 50, 100]">
+      </mat-paginator>
+    </mat-card-content>
+  </mat-card>
+</div>

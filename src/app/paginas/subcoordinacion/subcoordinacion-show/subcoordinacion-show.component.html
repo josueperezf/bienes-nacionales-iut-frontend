@@ -1,0 +1,67 @@
+<mat-card class="margin-24">
+  <mat-card-header>
+    <mat-card-title align='center'>Ver Subcoordinación</mat-card-title>
+  </mat-card-header>
+  <mat-divider/>
+  <mat-card-content>
+  <mat-list *ngIf='subcoordinacion'>
+    <mat-list-item><b>Ciudad:</b> {{subcoordinacion.ciudad}}</mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item><b>Nombre:</b> {{subcoordinacion.nombre}}</mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item><b>Creado:</b> {{subcoordinacion.created_at | date: 'dd/MM/yyyy'}}</mat-list-item>
+  </mat-list>
+  <mat-divider/>
+
+  <div *ngIf='unidad_administrativas && unidad_administrativas.length > 0' class="margin-top-24">
+    <div class="mat-elevation-z8">
+      <mat-card class="margin-24">
+        <mat-card-header>
+          <mat-card-title>Unidades Administrativas</mat-card-title>
+        </mat-card-header>
+        <mat-divider/>
+        <mat-card-content>
+            <table mat-table class="full-width-table" [dataSource]="unidad_administrativas" matSort aria-label="Elements">
+              <!-- Id Column -->
+              <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+                <td mat-cell *matCellDef="let row">{{row.id}}</td>
+              </ng-container>
+
+              <!-- subcoordinacion Column -->
+              <ng-container matColumnDef="subcoordinacion_nombre">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>subcoordinacion</th>
+                <td mat-cell *matCellDef="let row">{{row.subcoordinacion_nombre}}</td>
+              </ng-container>
+
+              <!-- nombre Column -->
+              <ng-container matColumnDef="nombre">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
+                <td mat-cell *matCellDef="let row">{{row.nombre}}</td>
+              </ng-container>
+
+              <!-- telefono Column -->
+              <ng-container matColumnDef="telefono">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Telefono</th>
+                <td mat-cell *matCellDef="let row">{{row.telefono}}</td>
+              </ng-container>
+
+              <!-- acciones Column -->
+              <ng-container matColumnDef="acciones">
+                <th mat-header-cell *matHeaderCellDef >Acciones</th>
+                <td mat-cell *matCellDef="let row">
+                  <button mat-icon-button color='primary' (click)="showUnidadAdministrativa(row.id)" *ngIf="!row.deleted_at">
+                    <mat-icon>remove_red_eye</mat-icon>
+                  </button>
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+  </mat-card-content>
+</mat-card>

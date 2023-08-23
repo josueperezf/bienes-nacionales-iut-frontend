@@ -1,0 +1,31 @@
+<mat-card class="margin-24 width-460">
+  <mat-card-header>
+    <mat-card-title>Ver Bien</mat-card-title>
+  </mat-card-header>
+  <mat-divider/>
+
+  <mat-card-content>
+    <mat-list *ngIf='bien'>
+      <mat-list-item>
+        <b>Codigo:</b>
+        {{bien.codigo}}
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <b>Serial:</b>
+        {{bien.serial}}
+      </mat-list-item>
+        <mat-divider></mat-divider>
+      <mat-list-item>
+        <b>Monto:</b>
+        {{bien.monto}}
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <b>Creado:</b>
+        {{bien.created_at | date: 'dd/MM/yyyy' }}
+      </mat-list-item>
+    </mat-list>
+
+  </mat-card-content>
+</mat-card>

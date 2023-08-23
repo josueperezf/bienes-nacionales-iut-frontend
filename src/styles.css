@@ -1,1 +1,106 @@
-/* You can add global styles to this file, and also import other style files */
+/*para que el texto de error en los inputs no tenga el padding que tienen por default que es de 16px*/
+.mat-mdc-form-field-error-wrapper {
+  padding: 0px !important;
+}
+/*ancho de la columna de acciones que tienen botones en los listados*/
+.mat-column-acciones {
+  width: 200px;
+}
+
+/*ancho de la columna de acciones que tienen botones en los listados*/
+.mat-column-id {
+  width: 80px;
+}
+.width-300 {
+  width: 300px;
+}
+.width-460 {
+  width: 460px;
+}
+
+.width-600 {
+  width: 600px;
+}
+
+.width-800 {
+  width: 800px;
+}
+
+
+.min-width-600 {
+  min-width: 600px;
+}
+
+.full-width-table, .full-width {
+  width: 100%;
+}
+.text-center {
+  text-align: center;
+}
+.margin-top-16 {
+  margin-top: 16px;
+}
+.margin-top-24 {
+  margin-top: 24px;
+}
+.margin-24 {
+  margin: 24px;
+}
+.margin-bottom-24 {
+  margin-bottom: 24px;
+}
+.margin-left-16 {
+  margin-left: 16px;
+}
+.margin-left-8 {
+  margin-left: 8px;
+}
+
+
+/*inicio para los componentes index que utilizan tabla y buscador*/
+/* Structure */
+.index-container {
+  position: relative;
+}
+
+.table-container-responsive {
+  position: relative;
+  min-height: 200px;
+  max-height: 400px;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+}
+
+.sombra-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 56px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.limite-maximo-de-taza-alcanzado {
+  max-width: 360px;
+  text-align: center;
+}
+
+/* Column Widths */
+.mat-column-number,
+.mat-column-state {
+  max-width: 64px;
+}
+
+.mat-column-created {
+  max-width: 124px;
+}
+
+
+

@@ -1,0 +1,68 @@
+<div class="margin-24">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Ver Marca</mat-card-title>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <mat-list *ngIf='marca'>
+        <mat-list-item>
+          <b>Nombre:</b>
+          {{marca.nombre}}
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+          <b>Creado:</b>
+          {{marca.created_at}}
+        </mat-list-item>
+      </mat-list>
+
+      <div *ngIf='biens && biens.length > 0'>
+        <hr>
+        <h3 class="text-center"> Bienes Relacionados</h3>
+        <table mat-table class="full-width-table" [dataSource]="biens" matSort aria-label="Elements">
+          <!-- Id Column -->
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+            <td mat-cell *matCellDef="let row">{{row.id}}</td>
+          </ng-container>
+
+          <!-- codigo Column -->
+          <ng-container matColumnDef="codigo">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Codigo</th>
+            <td mat-cell *matCellDef="let row">{{row.codigo}}</td>
+          </ng-container>
+
+          <!-- serial Column -->
+          <ng-container matColumnDef="serial">
+            <th mat-header-cell *matHeaderCellDef >Serial</th>
+            <td mat-cell *matCellDef="let row">{{row.serial}}</td>
+          </ng-container>
+
+          <!-- serial Column -->
+          <ng-container matColumnDef="monto">
+              <th mat-header-cell *matHeaderCellDef >Monto</th>
+              <td mat-cell *matCellDef="let row">{{row.monto}}</td>
+            </ng-container>
+
+          <!-- denominacion_nombre Column -->
+          <ng-container matColumnDef="denominacion_nombre">
+            <th mat-header-cell *matHeaderCellDef >Denominacion</th>
+            <td mat-cell *matCellDef="let row">{{row.denominacion_nombre}}</td>
+          </ng-container>
+
+          <!-- dependencia_usuaria_nombre Column -->
+          <ng-container matColumnDef="dependencia_usuaria_nombre">
+            <th mat-header-cell *matHeaderCellDef >Dependencia Usuaria</th>
+            <td mat-cell *matCellDef="let row">
+              <button mat-button color='primary' (click)="showDependenciaUsuaria(row.dependencia_usuaria_id)" >{{row.dependencia_usuaria_nombre}}</button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

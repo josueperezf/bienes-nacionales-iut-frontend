@@ -1,0 +1,15 @@
+export { Bien, BienPaginate, BienAdd, BienEdit } from './bien';
+export { Categoria } from './categoria';
+export { Coordinacion } from './coordinacion';
+export { Denominacion } from './denominacion';
+export { DependenciaUsuaria, DependenciaUsuariaPaginate, DependenciaUsuariaEdit, DependenciaUsuariaAlmacen } from './dependencia-usuaria';
+export { DetalleTipoMovimiento } from './detalle-tipo-movimiento';
+export { DialogConfirm } from './dialog-confirm';
+export { ErrorResponse } from './error-response';
+export { Inventario, InventarioRequest } from './inventario';
+export { Marca, MarcaPaginate } from './marca';
+export { PaginacionParams } from './paginacion';
+export { Subcoordinacion, SubcoordinacionPaginate, SubcoordinacionResponseEdit } from './subcoordinacion';
+export { TipoDependenciaUsuaria } from './tipo-dependencia-usuarias';
+export { UnidadAdministrativa, UnidadAdministrativaPaginate, UnidadAdministrativaShow } from './unidad-administrativa';
+export { MovimientoPaginate, MovimientoPaginteItem } from './movimiento';
