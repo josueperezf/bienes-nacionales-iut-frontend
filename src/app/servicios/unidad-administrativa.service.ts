@@ -3,13 +3,14 @@ import { HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UnidadAdministrativa, UnidadAdministrativaPaginate, UnidadAdministrativaShow, PaginacionParams } from '../interfaces';
 import { getUrlPaginate } from '../utils/urlPaginate';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UnidadAdministrativaService {
-  private url:string='http://127.0.0.1:8000/api/unidadAdministrativas';
-  //protected url:string='https://josueperezf.000webhostapp.com/api/unidadAdministrativas';
+  private url:string = `${environment.API_URL}/unidadAdministrativas`;
+
   constructor(
     private http:HttpClient
   ) { }

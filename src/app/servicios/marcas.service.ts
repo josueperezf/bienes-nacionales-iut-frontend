@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 
 export class MarcasService {
-  private url:string= `${environment.api_url}marcas/`;
+  private url:string= `${environment.API_URL}/marcas`;
   //protected url:string='https://josueperezf.000webhostapp.com/api/marcas';
   //protected url:string='/api/marcas';
   constructor(

@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DependenciaUsuaria, DependenciaUsuariaEdit, DependenciaUsuariaPaginate } from '../interfaces/dependencia-usuaria';
-import { SortDirection } from '@angular/material/sort';
 import { Observable } from 'rxjs';
 import { PaginacionParams } from '../interfaces/paginacion';
 import { getUrlPaginate } from '../utils/urlPaginate';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DependenciaUsuariaService {
-  private url:string='http://127.0.0.1:8000/api/dependenciaUsuarias';
-  //protected url:string='https://josueperezf.000webhostapp.com/api/dependenciaUsuarias';
+  private url:string= `${environment.API_URL}/dependenciaUsuarias`;
+
   constructor(
     private http:HttpClient
   ) { }

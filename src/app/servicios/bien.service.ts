@@ -3,14 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Bien, BienAdd, BienEdit, BienPaginate, PaginacionParams } from '../interfaces';
 import { getUrlPaginate } from '../utils/urlPaginate';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BienService {
-
-  private url:string='http://127.0.0.1:8000/api/biens';
-  //private url:string='https://josueperezf.000webhostapp.com/api/biens';
+  private url:string= `${environment.API_URL}/biens`;
   constructor(
     private http:HttpClient
   ) { }

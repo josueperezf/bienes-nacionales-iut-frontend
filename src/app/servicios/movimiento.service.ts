@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { PaginacionParams, MovimientoPaginate } from '../interfaces';
 import { getUrlPaginate } from '../utils/urlPaginate';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MovimientoService {
-  url:string='http://127.0.0.1:8000/api/movimientos';
-  //protected url:string='https://josueperezf.000webhostapp.com/api/movimientos';
+  private url:string= `${environment.API_URL}/movimientos`;
+
   constructor(
     private http:HttpClient
   ) { }
