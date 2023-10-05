@@ -8,8 +8,10 @@ RUN npm run build
 
 ## etapa 2 Para meter en un nginx para exponer mi aplicacion ya compilada en la etapa 1
 FROM nginx:alpine
-ADD config/default.config /etc/nginx/conf.d/default.config
-# la siguiente linea copia de la fase llamada build, los archivo que ella genera esta, y que estan en la carpeta /app/dist, ellos los pegamos en nuestro alpine en /var/www/app/
-COPY --from=build /app/dist /var/www/app/
+# la siguiente linea es para que copiemos el servidor que estamos creando de nginx, la configuracion que nosotros tenemos en la carpeta config, esto es para que sobreescriba la configuracion por default del nginx
+ADD ./config/default.conf /etc/nginx/conf.d/default.conf
+# importante, la siguiente linea se coloca el nombre del proyecto, por ser un proyecto de angular, pero si estuvieramos corriendo esto para rect no necesitariamos colocar eso, colocariamos la ruta hasta dist
+COPY --from=build /app/dist/angular-bienes-iut /var/www/app/
+
 EXPOSE 80
 CMD [ "nginx", "-g", "daemon off;" ]
