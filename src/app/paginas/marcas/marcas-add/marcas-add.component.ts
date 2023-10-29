@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ErrorResponse } from 'src/app/interfaces';
-import { ErrorService } from 'src/app/servicios/errores.service';
-import { MarcasService } from 'src/app/servicios/marcas.service';
+import { ErrorService, MarcasService } from 'src/app/servicios';
 
 @Component({
   selector: 'app-marcas-add',
