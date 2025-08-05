@@ -34,10 +34,21 @@ export class MarcasIndexComponent implements OnInit, AfterViewInit   {
     ) {}
 
   ngOnInit(): void {
-    this.marcasService.index().subscribe(( marcaPaginate: MarcaPaginate ) => {
-      this.marcaPaginate = marcaPaginate;
-      this.dataSource.data = marcaPaginate.data
-    });
+    this.marcasService.index().subscribe(
+     {
+      next:( marcaPaginate: MarcaPaginate ) => {
+        this.marcaPaginate = marcaPaginate;
+        this.dataSource.data = marcaPaginate.data
+      },
+      error:( e: {error: {"success": boolean,"message": string}} | any ) => {
+        if(e.error.success == false) {
+          this.errorService.mosotrarMensajes(e.error.message);
+          return;
+        }
+        this.errorService.mosotrarMensajes(e.message);
+      },
+    }
+  );
   }
 
   ngAfterViewInit():void {

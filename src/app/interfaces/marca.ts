@@ -22,7 +22,7 @@ export interface MarcaPaginate {
   total: number;
 }
 
-interface Link {
+export interface Link {
   url?: string;
   label: string;
   active: boolean;
